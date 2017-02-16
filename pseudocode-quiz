@@ -1,0 +1,69 @@
+You'll create a trivia game that shows only one question until the player answers it or their time runs out.
+
+If the player selects the correct answer, show a screen congratulating them for choosing the right option. After a few seconds, display the next question -- do this without user input.
+
+The scenario is similar for wrong answers and time-outs.
+
+If the player runs out of time, tell the player that time's up and display the correct answer. Wait a few seconds, then show the next question.
+If the player chooses the wrong answer, tell the player they selected the wrong option and then display the correct answer. Wait a few seconds, then show the next question.
+On the final screen, show the number of correct answers, incorrect answers, and an option to restart the game (without reloading the page).
+#bdbbbb
+http://jsfiddle.net/wanwu/mAcaM/
+
+STEPS:
+
+create 'start' button with onclick function.
+
+	- clicking the button should display the question#1 with the answer options
+	
+	- The timer should be active when the question is displayed.
+
+	- once the timer stops/ends, next question should be in the screen.
+
+create conditions
+	- right answer 
+	- wrong answer
+	- completed quiz
+	- quiz score
+	- restart the quiz
+
+
+questions:
+CSS Stands for...
+ A) Computer Styled Sections
+ B) Cascading Style Sheets
+ C) Crazy Solid Shapes
+ D) None of the above
+
+HTML stands for...
+ A) Hyper Text Markup Language
+ B) Hello Text Mark Language
+ C) Hyper Text Math Language
+ D) None of the above
+
+ Choose the correct HTML element for the largest heading:
+ <h6>
+ <heading>
+ <h1>
+ <head>
+
+In what year was the first Apple computer released?
+1976
+
+In a website browser address bar what does "www" stand for?
+World Wide Web
+
+What year was Facebook founded?
+2004
+
+In computer science, what does "GUI" stand for?
+Graphical user interface
+
+In database programming, SQL is an acronym for what?
+Structured query language
+
+When referring to computer memory, what does that acronym RAM stand for?
+Random Access Memory
+
+1,024 Gigabytes is equal to one what?
+Terabyte

@@ -1,0 +1,83 @@
+html, body {
+	background-color: rgb(208, 178, 141);
+	height: 100%;
+}
+
+.navbar-brand {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 45px;
+	text-align: center;
+	padding-top: 30px;
+}
+
+.navbar-default {
+	background-color: #000;
+	border-color: #000;
+	height: 100px;
+	
+}
+.navbar-default .navbar-brand {
+	color: #bdbbbb;
+	padding-bottom: 0px;
+}
+
+.navbar {
+	margin-bottom: 0px;
+	border-radius: 0px;
+
+}
+
+.btn-primary {
+	font-size: 20px;
+	font-weight: lighter;
+	letter-spacing: 1.5px;
+	background-color: #555555;
+	border-color: #555555;
+}
+
+
+.jumbo {
+	font-family: Helvetica, sans-serif;
+	background: rgb(208, 178, 141);
+	padding: 100px 100px;
+	margin: 0px;
+	border: 2px solid red;
+	/*text-align: center;*/
+	
+}
+
+#startpage {
+	text-align: center; 
+	padding-top: 0px;
+	padding-bottom: 50px;
+}
+
+.question, label {
+	color: #000;
+	font-size: 25px;
+	
+	line-height: 35px;
+	letter-spacing: 0.8px;
+}
+
+footer
+{
+	background-color: #000;
+    color: #bdbbbb;
+    text-align: center;
+    font-size: 10px;
+    padding: 15px;
+    height: 50px;
+}
+
+.wrapper {
+  	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -50px;
+}
+
+.push {
+  	height: 50px;
+}
+  
