@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>TriviaGame</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <title>TriviaGame</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-	<nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Trivia Game</a>
@@ -19,44 +19,100 @@
 
 <div class="wrapper">
 
-	<div class="jumbo">
+    <div class="jumbo"> <!-- ?? -->
     
-    <div id="startpage"><h1>Computer Trivia! Trivia!</h1></div>
-
-    <!-- <button type="button" id="start-button" class="btn btn-primary field col-xs-4 col-xs-offset-3 col-sm-4 col-sm-offset-3 col-md-6 col-md-offset-3">start</button> -->
+    <!-- Start Game section-->
+    <div id="startgame-section" class="container" style="display: block;">
+     <div id="startpage"><h1>Computer Trivia! Trivia!</h1></div>
+      <div class="row">
+        <div class="col-xs-4 col-xs-offset-1 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5">
+          <button type="button" id="start-button" class="btn btn-primary field">Start Game</button>
+        </div>
+      </div>
+    </div>
+    <!-- Start Game section -->
     
+    <!-- Quiz section -->
+    <div id="quiz-section" class="container" style="display: none">
+      <div class="row">
+        <div id="timer" class="col-xs-12 col-xs-offset-5">
+          Time left
+        </div>
+      </div>
+      <div class="row">
+        <div id="question" class="col-xs-12 col-xs-offset-2">
+          
+        </div>
+      </div>
+      <div class="container col-xs-8 col-xs-offset-2">
+        <div class="row">
+          <div id="choice1">
+            Choice
+          </div>
+        </div>
+        <div class="row">
+          <div id="choice2">
+            Choice
+          </div>
+        </div>
+        <div class="row">
+          <div id="choice3">
+            Choice
+          </div>
+        </div>
+        <div class="row">
+          <div id="choice4">
+            Choice
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Quiz section -->
 
-        <div class="quiz_panel">
-        <div class="question"><p></p></div>
-            <ul class="choiceList"></ul>
-          <!--   <div>
-                <label class="choice-list radio"><input type="radio" name="optradio"></label>
-            </div>
-            <div>
-                <label class="choice-list radio"><input type="radio" name="optradio"></label>
-            </div>	
-            <div>
-                <label class="choice-list radio"><input type="radio" name="optradio"></label>
-            </div> -->
-  	    </div>
-	</div>
-  		
-<div class="result"></div>
+    <!-- Quiz Results section -->
+    <div id="result-section" class="container" style="display: none">
+      <div class="row">
+        <div id="result" class="col-xs-2 col-xs-offset-5">
+          Results:
+        </div>
+      </div>
+      <div class="row">
+        <div id="correct-answers" class="col-xs-3 col-xs-offset-4">
+          Correct:
+          </div>
+      </div>
+      <div class="row">
+        <div id="incorrect-answers" class="col-xs-3 col-xs-offset-4">
+          Incorrect:
+        </div>
+      </div>
+      <div class="row">
+        <div id="un-answered" class="col-xs-3 col-xs-offset-4">
+          Unanswerd:
+        </div>
+      </div>
+      <div class="row">
+        <div id="correct-answers" class="col-xs-2 col-xs-offset-5">
+          <button class="btn btn-primary field"> Restart Game </button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Quiz Results section -->
+</div>
 
-	<div class="jumbo-bottom">
-		<img id="crystal-banner">
-	</div>
-	
+    <div class="jumbo-bottom">
+        <img id="crystal-banner">
+    </div>
+    
 
 </div>
 
-  	<footer class="footer">@Copyright 2016 Ashmy Selvamony</footer>
+<footer class="footer">@Copyright 2016 Ashmy Selvamony</footer>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="assets/javascript/app.js">
- 	
-
-
+    
 </script>
 
 

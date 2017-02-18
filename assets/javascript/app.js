@@ -1,4 +1,3 @@
-
 var questions = [{
     question: "Choose the correct HTML element for the largest heading?",
     choices: ["<h6>", "<heading>", "<h1>", "<head>"],
@@ -25,44 +24,159 @@ var questions = [{
 
 var currentQuestion = 0;
 var correctAnswers = 0;
+var incorrectAnswers = 0;
+var unAnswered = 0
 var quizOver = false;
 
+var QUIZ_TIME = 30;//in seconds
 
-
-// $( "#start-button" ).click(function() {
-  
-//   displayCurrentQuestion();
-// });
+var questionsJSON;
+var questionList;
 
 $(document).ready(function () {
+    initializeQuestions();	
+});
 
-	displayCurrentQuestion();
+/* Event handling */
+$( "#start-button" ).click(function() {
+   startGame();
+});
+
+$( "#choice1" ).click(function() {
+   checkAnswer(1);
+});
+
+$( "#choice2" ).click(function() {
+   checkAnswer(2);
+});
+
+$( "#choice3" ).click(function() {
+   checkAnswer(3);
+});
+
+$( "#choice4" ).click(function() {
+   checkAnswer(4);
+});
+/* Event handling */
 
 
 
-	// This displays the current question and the choices
-function displayCurrentQuestion() {
+/* Functional methods */
+var initializeQuestions = function ()
+{
+    questionsJSON = JSON.stringify(questions);
+    questionList = JSON.parse(questionsJSON);
+}
 
-    console.log("In display current Question");
+var startGame = function()
+{
+    $('#startgame-section').css({
+        display: 'none'
+    });
+
+    $('#quiz-section').css({
+        display: 'block'
+    });
+
+    currentQuestion = 1;
+    displayQuestion(currentQuestion);
+}
+
+var timerFunc;
+var startTimer = function()
+{
+    var timeleft = QUIZ_TIME;
+    $("#timer").text("Time left: " + timeleft-- + " secs");
     
-    var question = questions[currentQuestion].question;
-    var questionClass = $(document).find(".question");
-    var choiceList = $(document).find(".choiceList");
-    var numChoices = questions[currentQuestion].choices.length;
+    timerFunc = setInterval(function(){ 
+        if(timeleft === 0)
+        {
+            //stopTimer();
+            if(currentQuestion < 5)
+            {
+                unAnswered++;
+                displayNextQuestion();
+            } else 
+            {
+                unAnswered++;
+                showResults();
+            }
+        }
+        $("#timer").text("Time left: " + timeleft-- + " secs");
+    }, 1000);
+}
 
-    // Set the questionClass text to the current question
-    $(question).text(currentquestion);
+var stopTimer = function () {
+    clearInterval(timerFunc);
+}
 
+var restartTimer = function()
+{
+    stopTimer();
+    startTimer();
+}
 
+var displayQuestion = function(questionNo) 
+{
+    var questionObj = questionList[questionNo-1];
 
-    var choice;
+    $('#question').text(questionObj.question);
+    
+    $('#choice1').text(questionObj.choices[0]);
+    $('#choice2').text(questionObj.choices[1]);
+    $('#choice3').text(questionObj.choices[2]);
+    $('#choice4').text(questionObj.choices[3]);
 
-    for (i = 0; i < numChoices; i++) {
-        choice = questions[currentQuestion].choices[i];
-        $('<li>' + '<input type="radio"' + i + 'name="dynradio" />' + choice + '</li>').appendTo(choiceList);
-        console.log(choice);
-    	}
+    //startTimer();
+    restartTimer();
 
-	}
-})
+    console.log("end");
+}
 
+var displayNextQuestion = function()
+{
+    currentQuestion++;
+    displayQuestion(currentQuestion);
+
+    //startTimer();
+    restartTimer();
+}
+
+var showResults = function()
+{
+    stopTimer();
+    
+    $('#quiz-section').css({
+        display: 'none'
+    });
+
+    $('#result-section').css({
+        display: 'block'
+    });
+
+    $("#correct-answers").text("Correct: " + correctAnswers);
+    $("#incorrect-answers").text("Incorrect: " + incorrectAnswers);
+    $("#un-answered").text("Unanswered: " + unAnswered); 
+}
+
+var checkAnswer = function(choiceSelected)
+{
+    var questionObj = questionList[currentQuestion-1];
+
+    if(choiceSelected === questionObj.correctAnswer)
+    {
+        correctAnswers++;
+    } else
+    {
+        incorrectAnswers++;
+    }
+
+    if(currentQuestion < 5)
+    {
+        displayNextQuestion();
+    } else 
+    {
+        showResults();
+    }    
+}
+/* Functional methods */
