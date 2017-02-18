@@ -67,3 +67,50 @@ Random Access Memory
 
 1,024 Gigabytes is equal to one what?
 Terabyte
+
+
+	value = $("input[type='radio']:checked").val();
+
+	if (value == questions[currentQuestion].correctAnswer) {
+                    correctAnswers++;
+                }
+                currentQuestion++; 
+
+    if (currentQuestion < questions.length) {
+     
+     	displayCurrentQuestion();
+        
+
+           } 
+
+        else if (currentQuestion >= questions.length) {
+                    displayScore();
+                    quizOver = true;
+            }
+
+        else {
+        	
+        	quizOver = false;
+            resetQuiz();
+            displayCurrentQuestion();
+            hideScore();
+        }
+
+
+
+        function resetQuiz() {
+    currentQuestion = 0;
+    correctAnswers = 0;
+    hideScore();
+}
+
+function displayScore() {
+    $(document).find(".quiz_panel > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
+    $(document).find(".quiz_panel > .result").show();
+}
+
+function hideScore() {
+    $(document).find(".result").hide();
+}
+
+

@@ -8,7 +8,7 @@ var questions = [{
     choices: ["1976", "1980", "1985", "1990"],
     correctAnswer: 1
 }, {
-    question: "In computer science, what does 'GUI' stand for??",
+    question: "In computer science, what does 'GUI' stand for?",
     choices: ["Graphical user implementation", "Graphical user index", 
     "Geographical user interface", "Graphical user interface"],
     correctAnswer: 4
@@ -29,9 +29,6 @@ var quizOver = false;
 
 
 
-
-
-
 // $( "#start-button" ).click(function() {
   
 //   displayCurrentQuestion();
@@ -41,72 +38,31 @@ $(document).ready(function () {
 
 	displayCurrentQuestion();
 
-	value = $("input[type='radio']:checked").val();
 
-	if (value == questions[currentQuestion].correctAnswer) {
-                    correctAnswers++;
-                }
-                currentQuestion++; 
-
-    if (currentQuestion < questions.length) {
-     
-     	displayCurrentQuestion();
-        
-
-           } 
-
-        else if (currentQuestion >= questions.length) {
-                    displayScore();
-                    quizOver = true;
-            }
-
-        else {
-        	
-        	quizOver = false;
-            resetQuiz();
-            displayCurrentQuestion();
-            hideScore();
-        }
 
 	// This displays the current question and the choices
 function displayCurrentQuestion() {
 
     console.log("In display current Question");
-
+    
     var question = questions[currentQuestion].question;
-    var questionClass = $(document).find(".quiz_panel > .question");
-    var choiceList = $(document).find(".quiz_panel > .choiceList");
+    var questionClass = $(document).find(".question");
+    var choiceList = $(document).find(".choiceList");
     var numChoices = questions[currentQuestion].choices.length;
 
     // Set the questionClass text to the current question
-    $(questionClass).text(question);
+    $(question).text(currentquestion);
 
-    // Remove all current <li> elements (if any)
-    $(choiceList).find("li").remove();
+
 
     var choice;
 
     for (i = 0; i < numChoices; i++) {
         choice = questions[currentQuestion].choices[i];
-        $('<li><input type="radio" value=' + i + 'name="dynradio">' + choice + '</li>').appendTo('choiceList');
+        $('<li>' + '<input type="radio"' + i + 'name="dynradio" />' + choice + '</li>').appendTo(choiceList);
+        console.log(choice);
     	}
 
 	}
 })
-
-function resetQuiz() {
-    currentQuestion = 0;
-    correctAnswers = 0;
-    hideScore();
-}
-
-function displayScore() {
-    $(document).find(".quiz_panel > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
-    $(document).find(".quiz_panel > .result").show();
-}
-
-function hideScore() {
-    $(document).find(".result").hide();
-}
-
 
