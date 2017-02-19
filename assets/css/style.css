@@ -52,6 +52,18 @@ html, body {
 	padding-bottom: 50px;
 }
 
+.timer
+{
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 25px;
+}
+
+.question
+{
+	font-size: 30px
+}
+
 #quiz-section {
 	color: #000;
 	font-size: 25px;
@@ -60,6 +72,33 @@ html, body {
 	letter-spacing: 0.8px;
 }
 
+.choice
+{
+	margin: 5px;
+	padding: 5px;
+}
+
+.choice:hover
+{
+	background-color: #555;
+	color: white;
+	cursor: pointer;
+}
+
+#quiz-result
+{
+	font-weight: bold;
+}
+
+.overall-result-heading
+{
+	font-weight: bold;
+}
+
+.result-section, .overall-results
+{
+	font-size: 30px;
+}
 footer
 {
 	background-color: #000;
@@ -80,4 +119,3 @@ footer
 .push {
   	height: 50px;
 }
-  

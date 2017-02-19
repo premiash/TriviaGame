@@ -28,13 +28,13 @@ var incorrectAnswers = 0;
 var unAnswered = 0
 var quizOver = false;
 
-var QUIZ_TIME = 30;//in seconds
+var QUIZ_TIME = 5;//in seconds
 
 var questionsJSON;
 var questionList;
 
 $(document).ready(function () {
-    initializeQuestions();	
+    initialize();   
 });
 
 /* Event handling */
@@ -57,13 +57,23 @@ $( "#choice3" ).click(function() {
 $( "#choice4" ).click(function() {
    checkAnswer(4);
 });
+
+$( "#start-over" ).click(function() {
+    initialize();
+    startGame();
+});
 /* Event handling */
 
 
 
 /* Functional methods */
-var initializeQuestions = function ()
+var initialize = function ()
 {
+    currentQuestion = 0;
+    correctAnswers = 0;
+    incorrectAnswers = 0;
+    unAnswered = 0
+
     questionsJSON = JSON.stringify(questions);
     questionList = JSON.parse(questionsJSON);
 }
@@ -71,6 +81,10 @@ var initializeQuestions = function ()
 var startGame = function()
 {
     $('#startgame-section').css({
+        display: 'none'
+    });
+
+    $('#overall-results-section').css({
         display: 'none'
     });
 
@@ -91,16 +105,47 @@ var startTimer = function()
     timerFunc = setInterval(function(){ 
         if(timeleft === 0)
         {
-            //stopTimer();
-            if(currentQuestion < 5)
+            if(currentQuestion <= 5)
             {
                 unAnswered++;
-                displayNextQuestion();
-            } else 
-            {
-                unAnswered++;
-                showResults();
-            }
+                
+                $('#quiz-section').css({
+                    display: 'none'
+                });
+
+                $('#quiz-result-section').css({
+                    display: 'block'
+                });
+
+                $('#quiz-result').text("You are out of time !!");
+                $('#your-correct-answer').css({
+                    display: 'block'
+                });
+                var questionObj = questionList[currentQuestion-1];
+                $('#your-correct-answer').text("Correct answer is: " + questionObj.choices[questionObj.correctAnswer-1]);
+                $('#result-gif').attr({
+                    src: './assets/gifs/timeout.gif'
+                });
+                                
+                setTimeout(function() {
+        
+                    $('#quiz-section').css({
+                        display: 'block'
+                    });
+
+                    $('#quiz-result-section').css({
+                        display: 'none'
+                    });
+
+                    if(currentQuestion == 5)
+                    {
+                        showResults();
+                    } else
+                    {
+                        displayNextQuestion();    
+                    }
+                }, 3000);
+            } 
         }
         $("#timer").text("Time left: " + timeleft-- + " secs");
     }, 1000);
@@ -127,10 +172,7 @@ var displayQuestion = function(questionNo)
     $('#choice3').text(questionObj.choices[2]);
     $('#choice4').text(questionObj.choices[3]);
 
-    //startTimer();
     restartTimer();
-
-    console.log("end");
 }
 
 var displayNextQuestion = function()
@@ -138,7 +180,6 @@ var displayNextQuestion = function()
     currentQuestion++;
     displayQuestion(currentQuestion);
 
-    //startTimer();
     restartTimer();
 }
 
@@ -150,7 +191,7 @@ var showResults = function()
         display: 'none'
     });
 
-    $('#result-section').css({
+    $('#overall-results-section').css({
         display: 'block'
     });
 
@@ -161,22 +202,59 @@ var showResults = function()
 
 var checkAnswer = function(choiceSelected)
 {
+    stopTimer();
     var questionObj = questionList[currentQuestion-1];
 
-    if(choiceSelected === questionObj.correctAnswer)
+    $('#quiz-section').css({
+        display: 'none'
+    });
+
+    $('#quiz-result-section').css({
+        display: 'block'
+    });
+    
+    if(choiceSelected == questionObj.correctAnswer)
     {
+        $('#quiz-result').text("Correct !!");
+        $('#your-correct-answer').css({
+            display: 'none'
+        });
+        $('#result-gif').attr({
+            src: './assets/gifs/correct-'+currentQuestion+'.gif'
+        });
         correctAnswers++;
+
     } else
     {
+        $('#quiz-result').text("Nope...");
+        $('#your-correct-answer').css({
+            display: 'block'
+        });
+        $('#result-gif').attr({
+            src: './assets/gifs/wrong-'+currentQuestion+'.gif'
+        });
+        $('#your-correct-answer').text("Correct answer is: " + questionObj.choices[questionObj.correctAnswer-1]);
         incorrectAnswers++;
     }
 
-    if(currentQuestion < 5)
-    {
-        displayNextQuestion();
-    } else 
-    {
-        showResults();
-    }    
+    setTimeout(function() {
+        
+        $('#quiz-section').css({
+            display: 'block'
+        });
+
+        $('#quiz-result-section').css({
+            display: 'none'
+        });
+
+        if(currentQuestion < 5)
+        {
+            displayNextQuestion();
+        } else 
+        {
+            showResults();
+        } 
+    }, 3000);
+       
 }
 /* Functional methods */
